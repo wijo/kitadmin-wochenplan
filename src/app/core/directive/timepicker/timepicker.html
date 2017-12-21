@@ -1,0 +1,8 @@
+<input aria-describedby="{{vm.inputId + '-error'}}"
+       type="text"
+       id="{{vm.inputId}}"
+       ng-model="vm.dateTime"
+       ng-change="vm.updateTimeModelValue()"
+       placeholder="{{vm.placeholder}}"
+       ng-blur="vm.onBlur()"
+       ng-required="vm.dateTimeRequired">

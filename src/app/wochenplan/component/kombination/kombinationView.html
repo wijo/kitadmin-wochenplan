@@ -1,0 +1,126 @@
+<div flex="auto" class="kombinationView wochenplanKombination overflow-auto">
+    <img src="../../resources/img/menubar.png" alt="menubar" width="100%">
+    <div align="center">
+        <div ng-show="!vm.showWochenplan" class="content" align="left">
+            <div class="kombination form-group">
+                <div ng-show="true" class="headmessage" ng-class="{'active' : vm.alert.value}">
+                    <div ng-messages="vm.alert" class="error">
+                        <div ng-message="value" id="message" data-translate="{{vm.alert.messagekey}}" class=""></div>
+                    </div>
+                </div>
+                <div class="title">
+                    <h1>Wochenplan</h1>
+                </div>
+                <h2>Kombination erstellen</h2>
+                <div class="right">
+                    <div ng-repeat="modul in vm.modulArray |orderBy:'+zeitVon'">
+                        <label>
+                            <input type="checkbox" name="{{modul.id}}_modul" value="{{modul.name}}"
+                                   ng-checked="(vm.selectedkombination.module.indexOf(modul) > -1)"
+                                   ng-click="vm.toggleSelection(modul, vm.selectedkombination.module)">
+                            {{modul.name}}
+                        </label>
+                    </div>
+                    <div ng-show="vm.isOverlappingOrEmpty()" class="errormsg">
+                        <div ng-messages="vm.getOverlapping()" class="error">
+                            <div ng-message="overlapping" id="overlapping" data-translate="ERROR_OVERLAPPING"></div>
+                            <div ng-message="noselection" id="moduleselectionempty" data-translate="ERROR_NO_SELECTION"></div>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <ul class="list-inline">
+                            <li>
+                                <button ng-disabled="vm.isNameEmpty()" id="kombinationspeichern"
+                                        ng-click="vm.addSelectedKombinationToList(form)">Kombination speichern
+                                </button>
+                            </li>
+                            <li>
+                                <a ng-disabled="vm.isNameEmpty()" ng-click="vm.resetKombination()">zurücksetzen</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form role="form" name="form" class="" novalidate>
+                    <div class="left form-group">
+                        <div class="form-group">
+                            <input id="{{vm.selectedkombination.id}}_name" name="{{vm.selectedkombination.id}}_name"
+                                   ng-maxlength="20" ng-required="true" ng-model="vm.selectedkombination.name"
+                                   type="text" placeholder="Kombinationsname"/>
+                            <errormsg input-id="{{vm.selectedkombination.id}}_name" for="form[vm.selectedkombination.id + '_name'].$error"
+                                      class="error"></errormsg>
+                        </div>
+                        <div class="form-group">
+                            <input input-id="{{vm.selectedkombination.id}}_prozent" name="{{vm.selectedkombination.id}}_prozent"
+                                   ng-model="vm.selectedkombination.prozent"
+                                   ng-required="true" class="input"
+                                   type="number" placeholder="Prozent"/>
+                            <errormsg input-id="{{vm.selectedkombination.id}}_prozent" for="form[vm.selectedkombination.id + '_prozent'].$error"
+                                      class="error"></errormsg>
+                        </div>
+                        <div class="weeklist">
+                            <label ng-repeat="day in vm.dayOfWeek">
+                                {{day.toString().substr(0,2)}}<br/>
+                                <input type="checkbox" name="{{day}}" value="{{day}}"
+                                       ng-checked="(vm.selectedkombination.wochentage.indexOf(day) > -1)"
+                                       ng-click="vm.toggleSelection(day,vm.selectedkombination.wochentage)">
+                            </label>
+                            <div ng-show="vm.selectedkombination.wochentage.length===0 && vm.daytoggled" class="errormsg">
+                                <div ng-messages="{required: true}" class="error">
+                                    <div ng-message="required" id="wochentagselectionempty" data-translate="ERROR_NO_SELECTION"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="kombination form-group">
+                <div class="kombinationlist form-group">
+                    <h3>Kombinationen</h3>
+                    <div class="right">
+                        <div class="button">
+                            <ul class="list-inline">
+                                <li>
+                                    <button id="wochenplan"
+                                            ng-click="vm.toggleShowWochenplan()">Wochenplan anzeigen
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="left form-group">
+                        <table>
+                            <tr class="list-element" ng-repeat="kombi in vm.kombinationArray track by kombi.id">
+                                <td class="name" ng-class="{'selected' : kombi.id === vm.selectedkombination.id}">
+                                    <i class="fa fa-square"></i> &nbsp;{{kombi.name}}
+                                </td>
+                                <td class="icons">
+                                    <i ng-click="vm.setSelectedKombination(kombi)" class="fa fa-pencil"></i>
+                                    &nbsp;
+                                    <i ng-click="vm.deleteKombination(kombi)" class="fa fa-trash"></i>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--<pre>{{vm.selectedkombination |json}}</pre>
+			<pre>{{vm.modulMap |json}}</pre>-->
+            <!--<pre>{{vm.kombinationMap |json}}</pre>-->
+
+            <div class="kombination">
+                <div class="left form-group">
+                    <a ng-click="vm.goToModule()"> zurück zur Modulbearbeitung </a>
+                    <p class="info">Achtung: Kombinationen werden gelöscht</p>
+                </div>
+            </div>
+        </div>
+        <div ng-show="vm.showWochenplan" class="content" align="left">
+            <div class="kombination form-group">
+                <button id="kombi"
+                        ng-click="vm.toggleShowWochenplan()">Kombinationen anzeigen
+                </button>
+                <pre>{{vm.kombinationArray |json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

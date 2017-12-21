@@ -1,0 +1,7 @@
+.idea/
+temp/
+dist/
+build/
+node_modules/
+.tscache/
+npm-debug.log

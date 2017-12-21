@@ -1,0 +1,97 @@
+<div flex="auto" class="modulView wochenplanModul overflow-auto">
+    <img src="../../resources/img/menubar.png" alt="menubar" width="100%">
+    <div align="center">
+        <div class="content" align="left">
+            <div class="modul form-group">
+                <div ng-show="true" class="headmessage" ng-class="{'active' : vm.alert.value}">
+                    <div ng-messages="vm.alert" class="error">
+                        <div ng-message="value" id="message" data-translate="{{vm.alert.messagekey}}" class=""></div>
+                    </div>
+                </div>
+                <div class="title">
+                    <h1>Wochenplan</h1>
+                </div>
+                <h2>Modul erstellen</h2>
+                <div class="right">
+                    <div class="button">
+                        <ul class="list-inline">
+                            <li>
+                                <button ng-disabled="vm.isNameEmpty()" id="modulspeichern"
+                                        ng-click="vm.addSelectedModulToList(form)">Modul speichern
+                                </button>
+                            </li>
+                            <li>
+                                <a ng-disabled="vm.isNameEmpty()" ng-click="vm.resetModul()">zurücksetzen</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <form role="form" name="form" class="" novalidate>
+                    <div class="left form-group">
+                        <div class="form-group">
+                            <input id="{{vm.selectedmodul.id}}_name" name="{{vm.selectedmodul.id}}_name"
+                                   ng-maxlength="20" ng-required="true" ng-model="vm.selectedmodul.name"
+                                   type="text" placeholder="Modulname"/>
+                            <errormsg input-id="{{vm.selectedmodul.id}}_name" for="form[vm.selectedmodul.id + '_name'].$error"
+                                      class="error"></errormsg>
+                        </div>
+                        <div class="form-group">
+                            <timepicker input-id="{{vm.selectedmodul.id}}_zeitvon" name="{{vm.selectedmodul.id}}_zeitvon"
+                                        ng-model="vm.selectedmodul.zeitVon "
+                                        ng-required="true"
+                                        ng-attr-placeholder="von" class="input">
+                            </timepicker>
+                            <errormsg input-id="{{vm.selectedmodul.id}}_zeitvon" for="form[vm.selectedmodul.id + '_zeitvon'].$error"
+                                      class="error"></errormsg>
+                        </div>
+                        <div class="form-group">
+                            <timepicker input-id="{{vm.selectedmodul.id}}_zeitbis" name="{{vm.selectedmodul.id}}_zeitbis"
+                                        ng-model="vm.selectedmodul.zeitBis"
+                                        ng-required="true"
+                                        ng-attr-placeholder="bis" class="input">
+                            </timepicker>
+                            <errormsg input-id="{{vm.selectedmodul.id}}_zeitbis" for="form[vm.selectedmodul.id + '_zeitbis'].$error"
+                                      class="error"></errormsg>
+                        </div>
+                        <div ng-show="vm.isBisVorVon()" class="errormsg">
+                            <div ng-messages="vm.getBisVorVon()" class="error">
+                                <div ng-message="bisVorVon" id="bisvorvon" data-translate="ERROR_BIS_VOR_VON"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modul form-group">
+                <div class="modullist form-group">
+                    <h3>Module</h3>
+                    <div class="right">
+                        <div class="button">
+                            <ul class="list-inline">
+                                <li>
+                                    <button id="kombinationerstellen"
+                                            ng-click="vm.goToKombination()">Kombinationen erstellen
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="left form-group">
+                        <table>
+                            <tr class="list-element" ng-repeat="modul in vm.modulArray | orderBy:'+zeitVon' track by modul.id">
+                                <td class="name" ng-class="{'selected' : modul.id === vm.selectedmodul.id}">
+                                    <i class="fa fa-square"></i> &nbsp;{{modul.name}}
+                                </td>
+                                <td class="icons">
+                                    <i ng-click="vm.setSelectedModul(modul)" class="fa fa-pencil"></i>
+                                    &nbsp;
+                                    <i ng-click="vm.deleteModul(modul)" class="fa fa-trash"></i>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--<pre>{{vm.modulMap |json}}</pre>-->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+
+<!--suppress XmlDuplicatedId -->
+<div class="errormsg">
+    <div ng-messages="vm.errorObject" class="error">
+        <div ng-message="required" id="{{vm.inputid + '-error'}}" data-translate="ERROR_REQUIRED"></div>
+        <div ng-message="moment" id="{{vm.inputid + '-error'}}" data-translate="ERROR_FORMAT"></div>
+        <div ng-message="dateTime" id="{{vm.inputid + '-error'}}" data-translate="ERROR_DATETIME"></div>
+        <div ng-message="minDateTime" id="{{vm.inputid + '-error'}}" data-translate="ERROR_MIN_DATETIME"></div>
+        <div ng-message="maxDateTime" id="{{vm.inputid + '-error'}}" data-translate="ERROR_MAX_DATETIME"></div>
+        <div ng-message="maxlength" id="{{vm.inputid + '-error'}}" data-translate="ERROR_MAX_LENGTH"></div>
+    </div>
+</div>

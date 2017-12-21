@@ -1,0 +1,283 @@
+/* Component LESS */
+@import '../../style/variables.less';
+@import '../../style/mixins.less';
+/* Add Component LESS Above */
+.seed {
+    .greyback {
+        background-color: lightgray;
+    }
+    //smart table
+    .st-selected, .table-striped .st-selected {
+        background: transparent;
+        color: white;
+    }
+
+    .viewTitle {
+        hr.header {
+            margin-bottom: 5rem;
+        }
+        p:last-child {
+            margin-bottom: 5rem;
+        }
+
+    }
+
+    .inlineHint {
+        .ebeguItalic();
+        font-size: 1.4rem;
+        line-height: 2.5rem;
+    }
+
+    //SmartTable Styles
+    .table > thead > tr:first-child > th.sortable, .table > thead:first-child > tr:first-child > th.sortable {
+        cursor: pointer;
+        white-space: nowrap;
+        padding-right: 0;
+    }
+    .sortable:after {
+        font-size: 1.2rem;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 0.8rem;
+        font-family: FontAwesome;
+        content: "\f0dc";
+        margin-left: 1rem;
+    }
+    .st-sort-ascent:after {
+        transition: all 3s;
+        font-size: 1.2rem;
+        font-family: FontAwesome;
+        content: "\f0de";
+    }
+    .st-sort-descent:after {
+        font-size: 1.2rem;
+        font-family: FontAwesome;
+        content: "\f0dd";
+    }
+    .pagination {
+
+        .active {
+            a {
+                background-color: @primary;
+                border-color: @primary-dark;
+                &:hover, &:focus {
+                    background-color: @primary-dark;
+                    border-color: @primary;
+                }
+                color: @contrast-lightest;
+            }
+        }
+        a {
+            &, &:first-child, &:last-child {
+                border-radius: 0;
+            }
+            color: @primary;
+            &:hover, &:focus {
+                color: @primary-dark;
+            }
+        }
+    }
+
+    hr.header {
+        height: 0.1rem;
+        min-height: 1px;
+        border: none;
+        color: #333;
+        background-color: #333;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .marginLeft50 {
+        margin-left: 5rem;
+    }
+
+    .marginLeft10 {
+        margin-left: 1rem;
+    }
+
+    .marginLeft5 {
+        margin-left: 0.5rem;
+    }
+
+    .noMarginY {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .noMargin {
+        margin: 0;
+    }
+
+    .marginTop05 {
+        margin-top: 0.5rem;
+    }
+
+    .marginTop10 {
+        margin-top: 1rem;
+    }
+
+    .marginTop20 {
+        margin-top: 2rem;
+    }
+
+    .marginTop30 {
+        margin-top: 3rem;
+    }
+
+    .marginTop40 {
+        margin-top: 4rem;
+    }
+
+    .marginTop50 {
+        margin-top: 5rem;
+    }
+
+    .marginBottom10 {
+        margin-bottom: 1rem;
+    }
+
+    .marginBottom20 {
+        margin-bottom: 2rem;
+    }
+
+    .marginBottom30 {
+        margin-bottom: 3rem;
+    }
+
+    .marginBottom50 {
+        margin-bottom: 5rem;
+    }
+
+    .marginBottom60 {
+        margin-bottom: 5rem;
+    }
+
+    .marginBottom80 {
+        margin-bottom: 8rem;
+    }
+
+    //errors sofort nach verlassen des feldes anzeigen oder sobald das form submitted wurde
+    form:not(.ng-submitted) .form-group {
+        //geschwisterelement von .formcontrol feldern oder .input-element feldern sollen Fehlermeldung noch nicht anzeigen wenn input untouched ist
+        .input.ng-untouched ~ errormsg > .errormsg > .error,
+        input.ng-untouched ~ errormsg > .errormsg > .error {
+            display: none;
+        }
+
+    }
+
+    // aktuell gibt es eingentlich keine hints mehr
+    // Damit wir unter den inputs hints anzeigen koennen schieben wir die errors noch bisschen runter wenn ein Hint existiert
+    .hint {
+        .ebeguItalic();
+        letter-spacing: 0.135rem;
+        position: absolute;
+        left: 0.2rem;
+        right: auto;
+        bottom: 0.7rem;
+        font-size: 1.4rem;
+        line-height: 2.5rem;
+        transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+        color: @contrast-darkest;
+    }
+
+    md-input-container .error.hint [ng-messages] {
+        /* position: relative;
+		 -webkit-order: 4;
+		 -ms-flex- order: 4;
+		 order: 4;
+		 overflow: hidden;
+		 top: 1.6rem;
+		 clear: left;*/
+    }
+
+    ._md-open-menu-container, .md-open-menu-container {
+        z-index: @z-index-menu !important;
+    }
+
+    .well {
+        margin-left: -5rem;
+        margin-right: -2.5rem;
+        box-shadow: none;
+        border: none;
+        border-bottom: 0.5rem solid black;
+        span {
+            .ebeguH3();
+        }
+        i {
+            padding: 1rem 1rem 1rem 0;
+        }
+        border-radius: 0;
+        padding: 2rem 2.5rem 2rem 5rem;
+    }
+
+    .well-status-warten {
+        background-color: @warning-light;
+        i {
+            color: @warning;
+        }
+        border-bottom-color: @warning;
+    }
+
+    .well-status-bestaetigt {
+        background-color: @success-light;
+        i {
+            color: @success;
+        }
+        border-bottom-color: @success;
+    }
+
+    .well-status-abgewiesen {
+        background-color: @danger-light;
+        i {
+            color: @danger;
+        }
+        border-bottom-color: @danger;
+    }
+
+    .required:after {
+        content: "\00a0*";
+        display: inline;
+    }
+    h1.required span:after {
+        content: "\00a0*";
+    }
+    h1.required:after {
+        content: "";
+    }
+    .md-required:after {
+        content: "\00a0*" !important;
+    }
+
+}
+
+.dv-input-container-question {
+    h1 {
+        line-height: 2.4rem;
+    }
+}
+
+.headmessage {
+
+    box-sizing: border-box;
+    color: #cc0000;
+    line-height: 5rem;
+    font-size: 1.4rem;
+    height: 5rem;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding-left: 1em;
+    min-width: 1px;
+    & > div > div {
+        padding: 0;
+        box-sizing: border-box;
+        vertical-align: middle;
+    }
+    &.active {
+        outline-color: #cc0000;
+        background-color: #f2dede;
+
+    }
+
+}

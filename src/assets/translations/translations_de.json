@@ -1,0 +1,15 @@
+{
+
+    "ERROR_REQUIRED": "Feld wird benötigt",
+    "ERROR_FORMAT": "Falsches Format",
+    "ERROR_MODULMAP_EMPTY" : "Die Modulliste darf nicht leer sein",
+    "ERROR_DATETIME": "Falsches Datums- oder Zeitformat",
+    "ERROR_MIN_DATETIME" : "Zeit wurde unterschritten",
+    "ERROR_MAX_DATETIME" : "Zeit wurde überschritten",
+    "ERROR_MAX_LENGTH" : "maximal 20 Zeichen erlaubt",
+    "ERROR_NUMBER": "Falsches Zahlenformat",
+    "ERROR_BIS_VOR_VON" : "bis darf nicht vor von sein",
+    "ERROR_OVERLAPPING" : "Achtung: gewählte Module überschneiden sich",
+    "ERROR_NO_SELECTION" : "Mindestens eines auswählen"
+
+}

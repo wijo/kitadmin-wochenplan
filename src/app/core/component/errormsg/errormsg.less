@@ -1,0 +1,29 @@
+@import '../../../../style/variables.less';
+@import '../../../../style/mixins.less';
+
+.errormsg {
+    box-sizing: border-box;
+    color: #cc0000;
+    font-size: 1.4rem;
+    height: 3rem;
+    display: block;
+    overflow: hidden;
+    min-width: 1px;
+    vertical-align: bottom;
+    & > div > div {
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+}
+errormsg {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+
+md-input-container .md-errors-spacer, .md-errors-spacer {
+    display: none;
+    height: 2.5rem;
+    min-height: 2.5rem !important;
+}
