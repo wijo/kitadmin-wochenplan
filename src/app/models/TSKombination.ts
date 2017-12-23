@@ -1,3 +1,9 @@
+/**
+ * Eine Kombination besteht aus einem oder mehreren Modulen. Die Kombination ist an gewissen Wochentagen gueltig
+ * und hat einen bestimmten Prozentsatz (fuer die spaetere Berechnung) und einen Namen
+ *
+ * @author Jasmin & Joy
+ */
 export default class TSKombination {
     private _id: string;
     private _name: string;

@@ -1,5 +1,12 @@
 import moment = require('moment');
 
+/**
+ * Ein Modul hat eine von und eine bis Zeit und einen Namen. Sie definiert einen Zeitraum an dem eine spätere Belegung
+ * (moeglicherweise aber nur in Kombination mit einem anderen Modul) stattfinden kann.
+ * Ein Modul gehoert zu einer oder mehreren Kombination.
+ *
+ * @author Jasmin & Joy
+ */
 export default class TSModul {
     private _id: string;
     private _name: string;

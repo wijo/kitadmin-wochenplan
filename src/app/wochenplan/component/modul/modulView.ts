@@ -9,6 +9,11 @@ require('./modulView.less');
 
 let template = require('./modulView.html');
 
+/**
+ * Modul View zum erstellen der Module
+ *
+ * @author Jasmin & Joy
+ */
 export class ModulViewComponentConfig implements IComponentOptions {
     transclude: boolean = false;
     template: string = template;
@@ -18,20 +23,27 @@ export class ModulViewComponentConfig implements IComponentOptions {
 
 export class ModulViewController {
 
+    /**
+     * View-Variabeln
+     */
     form: IFormController;
     nextId = 1;
     selectedmodul: TSModul;
     modulArray: Array<TSModul> = [];
     alert: any;
+
     static $inject = ['$state', '$stateParams'];
 
+    /**
+     * Konstruktor
+     */
     /* @ngInject */
     constructor(private $state: IStateService, private $stateParams: IKombinationStateParams) {
-        //TODO insert normal data
         this.modulArray = $stateParams.modulArray;
         this.initSelectedModulAndResetAlert();
 
-        //TODO dummyData entfernen
+        //TODO remove after Demo
+        //Dummy Daten zum Testen und  evtl fuer die Demo
         let modul1 = new TSModul(this.getUniqueId());
         modul1.name = 'Morgen';
         modul1.zeitVon = DateUtil.now().hour(6).minute(0).second(0);
@@ -49,11 +61,17 @@ export class ModulViewController {
         // this.modulArray.push(modul3);
     }
 
+    /**
+     * wird beim laden der View aufgerufen
+     */
     $onInit() {
         this.initSelectedModulAndResetAlert();
         this.modulArray = this.$stateParams.modulArray;
     }
 
+    /**
+     * initialisiert das selektierte Modul und leert die (Error) Alerts
+     */
     initSelectedModulAndResetAlert(): void {
         this.selectedmodul = new TSModul(this.getUniqueId());
         this.alert = {
@@ -62,6 +80,11 @@ export class ModulViewController {
         };
     }
 
+    /**
+     * fuegt das selektierte Modul der Liste der Module hinzu.
+     * wird aufgerufen, wenn man auf "Modul speichern" klickt
+     * @param {IFormController} form
+     */
     addSelectedModulToList(form: IFormController): void {
         if (form.$valid && !this.isBisVorVon()) {
             if (this.modulArray.indexOf(this.selectedmodul) === -1) {
@@ -73,36 +96,68 @@ export class ModulViewController {
         }
     }
 
+    /**
+     * setzt das selektierte Modul.
+     * Wird aufgerufen, wenn das Stift-Icon eines Moduls aus der Liste gedrueckt wird
+     * @param {TSModul} modul
+     */
     setSelectedModul(modul: TSModul): void {
         this.selectedmodul = modul;
     }
 
+    /**
+     * entfernt das Modul aus der Liste
+     * Wird aufgerufen, wenn das Abfall-Icon eines Moduls aus der Liste gedrueckt wird
+     * @param {number} index
+     */
     deleteModul(index: number): void {
         this.modulArray.splice(index, 1);
         this.initSelectedModulAndResetAlert();
     }
 
+    /**
+     * gibt die naechste nummer von "nextId"
+     * wird als ID genearator verwendet
+     * @returns {string}
+     */
     getUniqueId(): string {
         this.nextId = this.nextId + 1;
         return this.nextId.toString();
     }
 
+    /**
+     * setzt das Modul zurueck
+     * (erstellt aber kein neues)
+     */
     resetModul(): void {
         this.selectedmodul.name = undefined;
         this.selectedmodul.zeitVon = undefined;
         this.selectedmodul.zeitBis = undefined;
     }
 
+    /**
+     * ueberprueft ob der Name des selektierten Modul leer oder undefiniert ist
+     * @returns {boolean} leerer oder undefinierter Name
+     */
     isNameEmpty(): boolean {
         return this.selectedmodul.name === undefined || this.selectedmodul.name === '';
     }
 
+    /**
+     * gibt ein Objekt zurueck, dass den definierten Key einer Angular Message haelt.
+     * Im definierten Key, ist ein boolean gespeichert
+     * @returns {any} Angular Message Objekt
+     */
     getBisVorVon(): any {
         return {
             bisVorVon: this.isBisVorVon()
         };
     }
 
+    /**
+     * ueberprueft, ob die Bis-Zeit vor der Von-Zeit ist
+     * @returns {boolean} bis ist vor von
+     */
     isBisVorVon(): boolean {
         if (!this.selectedmodul || !this.selectedmodul.zeitBis || !this.selectedmodul.zeitVon) {
             return false;
@@ -110,6 +165,11 @@ export class ModulViewController {
         return this.selectedmodul.zeitVon.isAfter(this.selectedmodul.zeitBis);
     }
 
+    /**
+     * wenn die Modul-Liste nicht leer ist, wird auf die Kombinations-View navigiert.
+     * anderenfalls wird ein Fehler angezeigt
+     * Beim View-Wechsel wird als Paramter die Modulliste mitgegeben
+     */
     goToKombination(): void {
         if (this.modulArray.length > 0) {
             let stateParams: IKombinationStateParams = new IKombinationStateParams();

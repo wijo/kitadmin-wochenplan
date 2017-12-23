@@ -22,22 +22,6 @@ export function configure($translateProvider: ITranslateProvider, $injector: IIn
         .fallbackLanguage('de')
         .preferredLanguage('de');
 
-    //Dirty Check configuration (nur wenn plugin vorhanden)
-    // if ($injector.has('unsavedWarningsConfigProvider')) {
-    //     let unsavedWarningsConfigProvider: any = $injector.get('unsavedWarningsConfigProvider');
-    //     unsavedWarningsConfigProvider.useTranslateService = true;
-    //     unsavedWarningsConfigProvider.logEnabled = false;
-    //     unsavedWarningsConfigProvider.navigateMessage = 'UNSAVED_WARNING';
-    //     unsavedWarningsConfigProvider.reloadMessage = 'UNSAVED_WARNING_RELOAD';
-    // }
-
-
-    //Configuration of $http service
-    // $httpProvider.interceptors.push('HttpErrorInterceptor');
-    // $httpProvider.interceptors.push('HttpAuthInterceptor');
-    // $httpProvider.interceptors.push('HttpResponseInterceptor');
-
     $locationProvider.hashPrefix('');
-
 
 }

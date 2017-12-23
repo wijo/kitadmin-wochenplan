@@ -4,6 +4,12 @@ import {KombinationViewComponentConfig} from './component/kombination/kombinatio
 import {ModulViewComponentConfig} from './component/modul/modulView';
 import {wochenplanRun} from './wochenplan.route';
 
+/**
+ * Wochenplan-Projekt module definition
+ * @type {angular.IModule}
+ *
+ * @author Jasmin & Joy
+ */
 export const Wochenplan = angular.module('seedWeb.wochenplan', [SeedWebCore.name, 'smart-table', 'ui.bootstrap'])
     .component('modulView', new ModulViewComponentConfig())
     .component('kombinationView', new KombinationViewComponentConfig())

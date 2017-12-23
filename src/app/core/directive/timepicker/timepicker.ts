@@ -6,6 +6,12 @@ import Moment = moment.Moment;
 
 let template = require('./timepicker.html');
 
+/**
+ * Direktive fuer ein Zeit-Inout
+ *
+ * @author Jasmin & Joy
+ */
+
 export class Timepicker implements IDirective {
     restrict = 'E';
     require: any = {ngModelCtrl: 'ngModel'};
@@ -14,8 +20,6 @@ export class Timepicker implements IDirective {
         inputId: '@',
         ngRequired: '<',
         placeholder: '@',
-        // ngDisabled: '<',
-        // noFuture: '<?',
         blur: '&?',
         minDateTime: '<?', // Kann als String im Format allowedFormats oder als Moment angegeben werden
         maxDateTime: '<?'  // Kann als String im Format allowedFormats oder als Moment angegeben werden
@@ -118,11 +122,20 @@ export class TimepickerController {
         };
     }
 
+    /**
+     * gibt die Modul-Value als Moment zurueck
+     * @param modelValue any
+     * @param viewValue any
+     * @returns {Moment} moment
+     */
     private getInputAsMoment(modelValue: any, viewValue: any): Moment {
         let value = modelValue || TimepickerController.stringToMoment(viewValue);
         return moment(value, 'HH:mm', true);
     }
 
+    /**
+     * beim Verlassen des Feldes wird das vom Verwendet definerte blur aufgerufen und des feld auf touched gesetzt
+     */
     onBlur() {
         if (this.blur) { // userdefined onBlur event
             this.blur();
@@ -130,10 +143,18 @@ export class TimepickerController {
         this.ngModelCtrl.$setTouched();
     }
 
+    /**
+     * setzt die Zeit-Value
+     */
     updateTimeModelValue() {
         this.ngModelCtrl.$setViewValue(this.dateTime);
     }
 
+    /**
+     * konvertiert eimem Moment zu einem String, wenn dieser Valid ist
+     * @param {Moment} mom
+     * @returns {string}
+     */
     private static momentToString(mom: Moment): string {
         if (mom && mom.isValid()) {
             return mom.format('HH:mm');
@@ -141,6 +162,11 @@ export class TimepickerController {
         return '';
     }
 
+    /**
+     * koventiert einen String zu einem Moment, wenn moeglich
+     * @param {string} dateTime
+     * @returns {any}
+     */
     private static stringToMoment(dateTime: string): any {
         if (moment(dateTime, 'HH:mm', true).isValid()) {
             return moment(dateTime, 'HH:mm', true);

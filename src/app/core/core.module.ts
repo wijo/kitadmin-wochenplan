@@ -20,7 +20,6 @@ const dependencies: string[] = [
     'ngMessages',
     'ngAria',
     'ngCookies',
-    /* shared DVBern modules */
     router.name,
     /* 3rd-party modules */
     'ui.bootstrap',

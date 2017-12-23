@@ -3,6 +3,11 @@ import {RouterHelper} from '../router/route-helper-provider';
 import TSModul from '../models/TSModul';
 
 wochenplanRun.$inject = ['RouterHelper'];
+/**
+ * Wochenplan route
+ *
+ * @author Jasmin & Joy
+ */
 
 /* @ngInject */
 export function wochenplanRun(routerHelper: RouterHelper) {
