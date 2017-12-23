@@ -3,6 +3,7 @@ import TSModul from '../../../models/TSModul';
 import {IKombinationStateParams} from '../../wochenplan.route';
 import IFormController = angular.IFormController;
 import IStateService = angular.ui.IStateService;
+import DateUtil from '../../../utils/DateUtil';
 
 require('./modulView.less');
 
@@ -31,10 +32,10 @@ export class ModulViewController {
         this.initSelectedModulAndResetAlert();
 
         //TODO dummyData entfernen
-        // let modul1 = new TSModul(this.getUniqueId());
-        // modul1.name = 'Morgen';
-        // modul1.zeitVon = DateUtil.now().hour(6).minute(0).second(0);
-        // modul1.zeitBis = DateUtil.now().hour(11).minute(0).second(0);
+        let modul1 = new TSModul(this.getUniqueId());
+        modul1.name = 'Morgen';
+        modul1.zeitVon = DateUtil.now().hour(6).minute(0).second(0);
+        modul1.zeitBis = DateUtil.now().hour(11).minute(0).second(0);
         // let modul2 = new TSModul(this.getUniqueId());
         // modul2.name = 'Mittag';
         // modul2.zeitVon = DateUtil.now().hour(11).minute(0).second(0);
@@ -62,7 +63,7 @@ export class ModulViewController {
     }
 
     addSelectedModulToList(form: IFormController): void {
-        if (form.$valid) {
+        if (form.$valid && !this.isBisVorVon()) {
             if (this.modulArray.indexOf(this.selectedmodul) === -1) {
                 this.modulArray.push(this.selectedmodul);
             }

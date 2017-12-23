@@ -23,6 +23,7 @@ export default class DateUtil {
 
     /**
      * @param {Moment} aMoment time instance
+     * @param {string} format
      * @returns {?string} a Date (YYYY-MM-DD) representation of the given moment. NULL when aMoment is invalid
      */
     public static momentToLocalDateFormat(aMoment: Moment, format: string): string {

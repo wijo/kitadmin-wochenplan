@@ -120,8 +120,7 @@ export class TimepickerController {
 
     private getInputAsMoment(modelValue: any, viewValue: any): Moment {
         let value = modelValue || TimepickerController.stringToMoment(viewValue);
-        let inputdateTime: Moment = moment(value, 'HH:mm', true);
-        return inputdateTime;
+        return moment(value, 'HH:mm', true);
     }
 
     onBlur() {

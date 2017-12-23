@@ -4,17 +4,16 @@ import {RouterHelper} from '../router/route-helper-provider';
 import auto = angular.auto;
 import IInjectorService = auto.IInjectorService;
 
-appRun.$inject = ['angularMomentConfig', 'RouterHelper','$injector', '$rootScope',
-    '$timeout', '$state', '$location', '$window', '$log' , ];
+appRun.$inject = ['angularMomentConfig', 'RouterHelper', '$injector', '$rootScope', '$timeout', '$state', '$location', '$window', '$log'];
 
 /* @ngInject */
 export function appRun(angularMomentConfig: any, routerHelper: RouterHelper,
-                       $injector: IInjectorService, $rootScope: IRootScopeService,  $timeout: ITimeoutService,
-                        $state: IStateService, $location: ILocationService, $window: ng.IWindowService,
+                       $injector: IInjectorService, $rootScope: IRootScopeService, $timeout: ITimeoutService,
+                       $state: IStateService, $location: ILocationService, $window: ng.IWindowService,
                        $log: ILogService) {
 
     // Fehler beim Navigieren ueber ui-route ins Log schreiben
-    $rootScope.$on('$stateChangeError',  (event, toState, toParams, fromState, fromParams, error) => {
+    $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
         $log.error('Fehler beim Navigieren');
         $log.error('$stateChangeError --- event, toState, toParams, fromState, fromParams, error');
         $log.error(event, toState, toParams, fromState, fromParams, error);

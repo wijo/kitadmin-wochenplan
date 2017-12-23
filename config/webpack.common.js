@@ -121,7 +121,7 @@ module.exports = {
         //
         // See: https://www.npmjs.com/package/copy-webpack-plugin
         new CopyWebpackPlugin([
-            {from: 'src/assets', to: 'src/assets'},
+            {from: 'src/assets', to: 'src/assets'}
         ]),
 
         // Plugin: HtmlWebpackPlugin
@@ -160,5 +160,5 @@ module.exports = {
         module: false,
         clearImmediate: false,
         setImmediate: false
-    },
+    }
 };

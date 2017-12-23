@@ -41,7 +41,7 @@ module.exports = [
             typeCheck: false,
 
             // automatically fix linting errors
-            fix: false,
+            fix: false
 
             // // can specify a custom tsconfig file relative to current directory or with absolute path
             // // to be used with type checked rules
